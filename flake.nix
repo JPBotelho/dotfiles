@@ -10,12 +10,12 @@
         inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-        url = "github:nix-community/home-manager"
+        url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = {pkgs, ... }: {
         nix.enable = false;
@@ -42,20 +42,19 @@
         programs.zsh.enable = true;
 
         environment.systemPackages = [ pkgs.fastfetch pkgs.vim pkgs.ripgrep pkgs.tmux ];
-        security.pam.enableSudoTouchIdAuth = true;  
-        homeconfig = {pkgs, ...}: {
-            # this is internal compatibility configuration 
-            # for home-manager, don't change this!
-            home.stateVersion = "23.05";
-            # Let home-manager install and manage itself.
-            programs.home-manager.enable = true;
+  };
+  homeconfig = {pkgs, ...}: {
+     # this is internal compatibility configuration 
+     # for home-manager, don't change this!
+     home.stateVersion = "23.05";
+     # Let home-manager install and manage itself.
+     programs.home-manager.enable = true;
 
-            home.packages = with pkgs; [];
+     home.packages = with pkgs; [];
 
-            home.sessionVariables = {
-                EDITOR = "vim";
-            };
-        };
+     home.sessionVariables = {
+         EDITOR = "vim";
+     }; 
   };
   in
   {
@@ -67,7 +66,7 @@
              home-manager.useGlobalPkgs = true;
              home-manager.useUserPackages = true;
              home-manager.verbose = true;
-             home-manager.users.$USER = homeconfig;
+             home-manager.users.world = homeconfig;
           }
        ];
     };
