@@ -41,7 +41,7 @@
         # Create /etc/zshrc that loads the nix-darwin environment.
         programs.zsh.enable = true;
 
-        environment.systemPackages = [ pkgs.fastfetch pkgs.vim pkgs.ripgrep pkgs.tmux ];
+        environment.systemPackages = [ pkgs.fastfetch pkgs.vim pkgs.ripgrep pkgs.tmux pkgs.fzf pkgs.k9s pkgs.bun ];
   };
   homeconfig = {pkgs, ...}: {
      # this is internal compatibility configuration 
@@ -54,7 +54,8 @@
 
      home.sessionVariables = {
          EDITOR = "vim";
-     }; 
+     };
+     home.file.".vimrc".source = ./vim_configuration;
   };
   in
   {
