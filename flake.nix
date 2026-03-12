@@ -56,6 +56,7 @@
          EDITOR = "vim";
      };
      home.file.".vimrc".source = ./vim_configuration;
+     home.file.".zshrc".source = ./zshrc;
   };
   in
   {
@@ -68,6 +69,7 @@
              home-manager.useUserPackages = true;
              home-manager.verbose = true;
              home-manager.users.world = homeconfig;
+             home-manager.backupFileExtension = "backup";
           }
        ];
     };
