@@ -41,7 +41,7 @@
         # Create /etc/zshrc that loads the nix-darwin environment.
         programs.zsh.enable = true;
 
-        environment.systemPackages = [ pkgs.alt-tab-macos pkgs.neovim pkgs.fastfetch pkgs.vim pkgs.ripgrep pkgs.tmux pkgs.fzf pkgs.k9s pkgs.bun pkgs.starship ];
+        environment.systemPackages = [ pkgs.alt-tab-macos pkgs.neovim pkgs.fastfetch pkgs.vim pkgs.ripgrep pkgs.tmux pkgs.fzf pkgs.k9s pkgs.bun pkgs.starship pkgs.cargo pkgs.ghostty-bin ];
   };
   homeconfig = {pkgs, ...}: {
      # this is internal compatibility configuration 
